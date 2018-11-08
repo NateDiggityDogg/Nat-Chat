@@ -27,7 +27,7 @@ public class drawingComponent extends JComponent{
 	g2d.setColor(new Color(255, 0, 0));
 	
 //	g2d.drawImage(loadImage("C:/Users/Barack Obama/jointWorkspace/Nat-Chat/src/resources/IMG_1749.JPG"), null, -500, -500);
-	g2d.drawImage(loadImage("C:/Users/Barack Obama/jointWorkspace/Nat-Chat/src/resources/IMG_1749.JPG"), 0, 0, frameWidth, frameHeight, null);
+	g2d.drawImage(loadImage("Resources/IMG_1749.JPG"), 0, 0, frameWidth, frameHeight, null);
 	
 	
 	}
