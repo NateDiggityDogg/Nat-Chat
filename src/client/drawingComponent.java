@@ -24,10 +24,9 @@ public class drawingComponent extends JComponent{
 
 	System.out.println("tick!");
 	
-	g2d.setColor(new Color(255, 0, 0));
-	
-//	g2d.drawImage(loadImage("C:/Users/Barack Obama/jointWorkspace/Nat-Chat/src/resources/IMG_1749.JPG"), null, -500, -500);
-	g2d.drawImage(loadImage("Resources/IMG_1749.JPG"), frameWidth/2, 0, frameWidth/2, frameHeight/2, null);
+	Image image = loadImage("Resources/IMG_1749.JPG");
+
+	g2d.drawImage(image, frameWidth/2, 0, frameWidth/2, frameHeight/2, null);
 	
 	
 	}
