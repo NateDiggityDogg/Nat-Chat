@@ -42,12 +42,14 @@ public class Client {
 	static JCheckBox checkbox1;
 	static JCheckBox checkbox2;
 	static JCheckBox checkbox3;
-
 	static JCheckBox checkbox4;
 	static JCheckBox checkbox5;
 	static JCheckBox checkbox6;
+	
+	static JCheckBox[] checkboxes;
 
 	static JButton saveButton;
+	static JButton resetButton;
 
 	drawingComponent paint;
 
@@ -83,8 +85,11 @@ public class Client {
 		checkbox4 = new JCheckBox("I wanna kashoot myself");
 		checkbox5 = new JCheckBox("Lowell for Freshman pres 2018");
 		checkbox6 = new JCheckBox("Luigi says yeet with the heat");
+		
+		checkboxes[0] = new JCheckBox("Baske");
 
 		saveButton = new JButton("Save");
+		resetButton = new JButton("Reset");
 
 		// Adding components to JPanel
 //		container.add(paint);
@@ -101,6 +106,7 @@ public class Client {
 		container.add(textbox2);
 		container.add(textbox3);
 		container.add(saveButton);
+		container.add(resetButton);
 
 		// Adding panel to frame
 		clientFrame.add(container);
@@ -113,7 +119,7 @@ public class Client {
 			// On button press
 			if (saveButton.getModel().isPressed()) {
 				System.out.println("Yeetus that fucking fetus");
-				saveButton.hide();
+				saveButton.setVisible(false);
 
 				Boolean[] booleans = new Boolean[6];
 
@@ -131,6 +137,23 @@ public class Client {
 
 				CSV.write(booleans, strings);
 
+			}
+			
+			//On reset button press
+			if(resetButton.getModel().isPressed()) {
+			System.out.println("Fetus repeatus");
+			checkbox1.setSelected(false);
+			checkbox2.setSelected(false);
+			checkbox3.setSelected(false);
+			checkbox4.setSelected(false);
+			checkbox5.setSelected(false);
+			checkbox6.setSelected(false);
+			
+			textbox1.setText(null);
+			textbox2.setText(null);
+			textbox3.setText(null);
+			
+			saveButton.setVisible(true);
 			}
 
 			try {
@@ -173,7 +196,8 @@ public class Client {
 		checkbox6.setBounds(frameWidth * 9 / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
 
 		saveButton.setBounds(frameWidth / 2, frameHeight * 17 / 32, frameWidth / 12, frameHeight / 16);
-
+		resetButton.setBounds(frameWidth/2, frameHeight*13/32, frameWidth/12, frameHeight/16);
+		
 	}
 
 }
