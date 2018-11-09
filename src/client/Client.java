@@ -30,21 +30,11 @@ public class Client {
 
 	static int frameWidth = screenWidth / 2;
 	static int frameHeight = screenHeight / 2;
-
-	static JLabel label1;
-	static JLabel label2;
-	static JLabel label3;
-
-	static JTextField textbox1;
-	static JTextField textbox2;
-	static JTextField textbox3;
-
-	static JCheckBox checkbox1;
-	static JCheckBox checkbox2;
-	static JCheckBox checkbox3;
-	static JCheckBox checkbox4;
-	static JCheckBox checkbox5;
-	static JCheckBox checkbox6;
+	
+	//JComponent variable declarations
+	static JLabel[] labels;
+	
+	static JTextField[] textboxes;
 	
 	static JCheckBox[] checkboxes;
 
@@ -71,40 +61,46 @@ public class Client {
 		container.setLayout(null);
 
 		// Component Declarations!
-		label1 = new JLabel("First Name");
-		label2 = new JLabel("Last Name");
-		label3 = new JLabel("Social Security #(We're all friends here!)");
-
-		textbox1 = new JTextField();
-		textbox2 = new JTextField();
-		textbox3 = new JTextField();
-
-		checkbox1 = new JCheckBox("Nate for Overlord!");
-		checkbox2 = new JCheckBox("I Support Nat-Chat");
-		checkbox3 = new JCheckBox("This is Getting Ridiculous");
-		checkbox4 = new JCheckBox("I wanna kashoot myself");
-		checkbox5 = new JCheckBox("Lowell for Freshman pres 2018");
-		checkbox6 = new JCheckBox("Luigi says yeet with the heat");
 		
-		checkboxes[0] = new JCheckBox("Baske");
+		labels = new JLabel[3];
+		
+		labels[0] = new JLabel("First Name");
+		labels[1] = new JLabel("Last Name");
+		labels[2] = new JLabel("Social Security #(We're all friends here!)");
+		
+		textboxes = new JTextField[3];
+		
+		textboxes[0] = new JTextField();
+		textboxes[1] = new JTextField();
+		textboxes[2] = new JTextField();
+		
+		checkboxes = new JCheckBox[6];
+		
+		checkboxes[0] = new JCheckBox("Nate for Overlord!");
+		checkboxes[1] = new JCheckBox("I Support Nat-Chat");
+		checkboxes[2] = new JCheckBox("LUIGI says yeEt with the heat");
+		checkboxes[3] = new JCheckBox("I Wanna Kashoot myself");
+		checkboxes[4] = new JCheckBox("Lowell for Freshman pres 2018");
+		checkboxes[5] = new JCheckBox("I really hate the capitalization scheme");
+
 
 		saveButton = new JButton("Save");
 		resetButton = new JButton("Reset");
 
 		// Adding components to JPanel
 //		container.add(paint);
-		container.add(checkbox1);
-		container.add(checkbox2);
-		container.add(checkbox3);
-		container.add(checkbox4);
-		container.add(checkbox5);
-		container.add(checkbox6);
-		container.add(label1);
-		container.add(label2);
-		container.add(label3);
-		container.add(textbox1);
-		container.add(textbox2);
-		container.add(textbox3);
+		container.add(checkboxes[0]);
+		container.add(checkboxes[1]);
+		container.add(checkboxes[2]);
+		container.add(checkboxes[3]);
+		container.add(checkboxes[4]);
+		container.add(checkboxes[5]);
+		container.add(labels[0]);
+		container.add(labels[1]);
+		container.add(labels[2]);
+		container.add(textboxes[0]);
+		container.add(textboxes[1]);
+		container.add(textboxes[2]);
 		container.add(saveButton);
 		container.add(resetButton);
 
@@ -123,17 +119,17 @@ public class Client {
 
 				Boolean[] booleans = new Boolean[6];
 
-				booleans[0] = checkbox1.isSelected();
-				booleans[1] = checkbox2.isSelected();
-				booleans[2] = checkbox3.isSelected();
-				booleans[3] = checkbox4.isSelected();
-				booleans[4] = checkbox5.isSelected();
-				booleans[5] = checkbox6.isSelected();
+				booleans[0] = checkboxes[0].isSelected();
+				booleans[1] = checkboxes[1].isSelected();
+				booleans[2] = checkboxes[2].isSelected();
+				booleans[3] = checkboxes[3].isSelected();
+				booleans[4] = checkboxes[4].isSelected();
+				booleans[5] = checkboxes[5].isSelected();
 
 				String[] strings = new String[3];
-				strings[0] = textbox1.getText();
-				strings[1] = textbox2.getText();
-				strings[2] = textbox3.getText();
+				strings[0] = textboxes[0].getText();
+				strings[1] = textboxes[1].getText();
+				strings[2] = textboxes[2].getText();
 
 				CSV.write(booleans, strings);
 
@@ -142,16 +138,16 @@ public class Client {
 			//On reset button press
 			if(resetButton.getModel().isPressed()) {
 			System.out.println("Fetus repeatus");
-			checkbox1.setSelected(false);
-			checkbox2.setSelected(false);
-			checkbox3.setSelected(false);
-			checkbox4.setSelected(false);
-			checkbox5.setSelected(false);
-			checkbox6.setSelected(false);
+			checkboxes[0].setSelected(false);
+			checkboxes[1].setSelected(false);
+			checkboxes[2].setSelected(false);
+			checkboxes[3].setSelected(false);
+			checkboxes[4].setSelected(false);
+			checkboxes[5].setSelected(false);
 			
-			textbox1.setText(null);
-			textbox2.setText(null);
-			textbox3.setText(null);
+			textboxes[0].setText(null);
+			textboxes[1].setText(null);
+			textboxes[2].setText(null);
 			
 			saveButton.setVisible(true);
 			}
@@ -180,20 +176,20 @@ public class Client {
 
 //			paint.setBounds(0, 0, frameWidth, frameHeight);
 
-		label1.setBounds(0, 0, frameWidth / 4, frameHeight / 16);
-		label2.setBounds(0, frameHeight * 2 / 16, frameWidth / 4, frameHeight / 16);
-		label3.setBounds(0, frameHeight * 4 / 16, frameWidth / 4, frameHeight / 16);
+		labels[0].setBounds(0, 0, frameWidth / 4, frameHeight / 16);
+		labels[1].setBounds(0, frameHeight * 2 / 16, frameWidth / 4, frameHeight / 16);
+		labels[2].setBounds(0, frameHeight * 4 / 16, frameWidth / 4, frameHeight / 16);
 
-		textbox1.setBounds(0, frameHeight / 16, frameWidth / 4, frameHeight / 16);
-		textbox2.setBounds(0, frameHeight * 3 / 16, frameWidth / 4, frameHeight / 16);
-		textbox3.setBounds(0, frameHeight * 5 / 16, frameWidth / 4, frameHeight / 16);
+		textboxes[0].setBounds(0, frameHeight / 16, frameWidth / 4, frameHeight / 16);
+		textboxes[1].setBounds(0, frameHeight * 3 / 16, frameWidth / 4, frameHeight / 16);
+		textboxes[2].setBounds(0, frameHeight * 5 / 16, frameWidth / 4, frameHeight / 16);
 
-		checkbox1.setBounds(frameWidth / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
-		checkbox2.setBounds(frameWidth * 5 / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
-		checkbox3.setBounds(frameWidth * 9 / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
-		checkbox4.setBounds(frameWidth / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
-		checkbox5.setBounds(frameWidth * 5 / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
-		checkbox6.setBounds(frameWidth * 9 / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
+		checkboxes[0].setBounds(frameWidth / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
+		checkboxes[1].setBounds(frameWidth * 5 / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
+		checkboxes[2].setBounds(frameWidth * 9 / 16, frameHeight * 5 / 8, frameWidth / 4, frameHeight / 32);
+		checkboxes[3].setBounds(frameWidth / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
+		checkboxes[4].setBounds(frameWidth * 5 / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
+		checkboxes[5].setBounds(frameWidth * 9 / 16, frameHeight * 21 / 32, frameWidth / 4, frameHeight / 32);
 
 		saveButton.setBounds(frameWidth / 2, frameHeight * 17 / 32, frameWidth / 12, frameHeight / 16);
 		resetButton.setBounds(frameWidth/2, frameHeight*13/32, frameWidth/12, frameHeight/16);
