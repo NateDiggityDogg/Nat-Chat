@@ -2,6 +2,7 @@ package client;
 
 import java.awt.Color;
 import java.awt.FlowLayout;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.GridLayout;
@@ -42,13 +43,17 @@ public class Client {
 	static JCheckBox checkbox2;
 	static JCheckBox checkbox3;
 	
+	static JCheckBox checkbox4;
+	static JCheckBox checkbox5;
+	static JCheckBox checkbox6;
+	
 	static JButton saveButton;
 	
-	static JLayer layout;
-
-	
+	drawingComponent paint;
 
 	public static void main(String[] args) {
+		
+		//Defining JFrame properties
 		JFrame clientFrame = new JFrame();
 		clientFrame.setTitle("Nat-Chat");
 		clientFrame.setSize(frameWidth, frameHeight);
@@ -56,51 +61,99 @@ public class Client {
 		clientFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		clientFrame.setVisible(true);
 		
-		drawingComponent paint = new drawingComponent();
+		//Instancing object to draw image
+//		drawingComponent paint = new drawingComponent();
 		
 		JPanel container = new JPanel();
+		
 		container.setLayout(null);
 		
-		label1 = new JLabel("Dank");
-		label2 = new JLabel("Memes");
-		label3 = new JLabel("Kiddos");
+		//Component Declarations!
+		label1 = new JLabel("First Name");
+		label2 = new JLabel("Last Name");
+		label3 = new JLabel("Social Security #(We're all friends here!)");
 		
 		textbox1 = new JTextField();
 		textbox2 = new JTextField();
 		textbox3 = new JTextField();
-		checkbox1 = new JCheckBox("E-Z Dubs");
-		checkbox2 = new JCheckBox("Not so E-Z Dubs");
-		checkbox3 = new JCheckBox("Super E-Z Dubs");
+		
+		checkbox1 = new JCheckBox("Nate for Overlord!");
+		checkbox2 = new JCheckBox("I Support Nat-Chat");
+		checkbox3 = new JCheckBox("This is Getting Ridiculous");
+		checkbox4 = new JCheckBox("I wanna kashoot myself");
+		checkbox5 = new JCheckBox("Lowell for Freshman pres 2018");
+		checkbox6 = new JCheckBox("Luigi says yeet with the heat");
+		
 		saveButton = new JButton("Save");
 		
-//		container.add(checkbox1);
-//		container.add(checkbox2);
-//		container.add(checkbox3);
-//		container.add(label1);
-//		container.add(label2);
-//		container.add(label3);
-//		container.add(textbox1);
-//		container.add(textbox2);
-//		container.add(textbox3);
-//		container.add(saveButton);
-		System.out.println("made it!");
-		container.add(paint);
+		//Adding components to JPanel
+//		container.add(paint);
+		container.add(checkbox1);
+		container.add(checkbox2);
+		container.add(checkbox3);
+		container.add(checkbox4);
+		container.add(checkbox5);
+		container.add(checkbox6);
+		container.add(label1);
+		container.add(label2);
+		container.add(label3);
+		container.add(textbox1);
+		container.add(textbox2);
+		container.add(textbox3);
+		container.add(saveButton);
+
 		
+		//Adding panel to frame
 		clientFrame.add(container);
 		
+		
+		//Tick...
 		while (true) {
 			frameWidth = clientFrame.getWidth();
 			frameHeight = clientFrame.getHeight();
 			
-			textbox1.setBounds(0, 0, frameWidth/2, frameHeight/2);
-			paint.setBounds(frameWidth/2, 0, frameWidth/2, frameHeight/2);
-			clientFrame.add(container);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(250);
 			}catch(Exception e) {
 				e.printStackTrace();
+			}
+			
+			int newFrameWidth = clientFrame.getWidth();
+			int newFrameHeight = clientFrame.getHeight();
+			
+			if(newFrameWidth != frameWidth || newFrameHeight != frameHeight) {
+//				reformat(paint, clientFrame);
+				reformat(clientFrame);
 			}
 	}
 	
 }
+		//Reformat Components to new frame size
+//		public static void reformat(drawingComponent paint, JFrame clientFrame) {
+		public static void reformat(JFrame clientFrame) {
+			frameWidth = clientFrame.getWidth();
+			frameHeight = clientFrame.getHeight();
+			
+//			paint.setBounds(0, 0, frameWidth, frameHeight);
+			
+			label1.setBounds(0, 0, frameWidth/4, frameHeight/16);
+			label2.setBounds(0, frameHeight*2/16, frameWidth/4, frameHeight/16);
+			label3.setBounds(0, frameHeight*4/16, frameWidth/4, frameHeight/16);
+			
+			textbox1.setBounds(0, frameHeight/16, frameWidth/4, frameHeight/16);
+			textbox2.setBounds(0, frameHeight*3/16, frameWidth/4, frameHeight/16);	
+			textbox3.setBounds(0, frameHeight*5/16, frameWidth/4, frameHeight/16);
+			
+			checkbox1.setBounds(frameWidth/16, frameHeight*5/8, frameWidth/4, frameHeight/32);
+			checkbox2.setBounds(frameWidth*5/16, frameHeight*5/8, frameWidth/4, frameHeight/32);
+			checkbox3.setBounds(frameWidth*9/16, frameHeight*5/8, frameWidth/4, frameHeight/32);
+			checkbox4.setBounds(frameWidth/16, frameHeight*21/32, frameWidth/4, frameHeight/32);
+			checkbox5.setBounds(frameWidth*5/16, frameHeight*21/32, frameWidth/4, frameHeight/32);
+			checkbox6.setBounds(frameWidth*9/16, frameHeight*21/32, frameWidth/4, frameHeight/32);
+
+			
+			saveButton.setBounds(frameWidth/2, frameHeight*17/32, frameWidth/12, frameHeight/16);	
+			
+		}
+	
 }

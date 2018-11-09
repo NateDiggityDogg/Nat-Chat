@@ -1,6 +1,7 @@
 package client;
 
 import java.awt.Color;
+import java.awt.GradientPaint;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
@@ -16,17 +17,24 @@ import javax.imageio.ImageIO;
 import javax.swing.JComponent;
 
 public class drawingComponent extends JComponent{
-
+	
 	public void paintComponent(Graphics g){
 	int frameWidth = super.getWidth();
 	int frameHeight = super.getHeight();
+		
 	Graphics2D g2d = (Graphics2D) g;
+	
+	GradientPaint gradPaint = new GradientPaint(0, 0, Color.BLUE, frameWidth, frameHeight, Color.ORANGE);
 
 	System.out.println("tick!");
 	
 	Image image = loadImage("Resources/IMG_1749.JPG");
+	
+	g2d.setPaint(gradPaint);
+	
+	g2d.fillRect(0, 0, frameWidth, frameHeight);
 
-	g2d.drawImage(image, frameWidth/2, 0, frameWidth/2, frameHeight/2, null);
+//	g2d.drawImage(image, 0, 0, frameWidth, frameHeight, null);
 	
 	
 	}
