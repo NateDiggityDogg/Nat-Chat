@@ -17,6 +17,12 @@ public class Reader {
 	
 	static int screenWidth;
 	static int screenHeight;
+	
+	static int frameWidth;
+	static int frameHeight;
+	
+	static int newFrameWidth;
+	static int newFrameHeight;
 
 	public static void main(String[] args) {
 		
@@ -33,6 +39,43 @@ public class Reader {
 		container.setLayout(null);
 		
 		searchBox = new JTextField();
+		searchButton = new JButton("Search!");
+		
+		container.add(searchBox);
+		container.add(searchButton);
+		
+		clientFrame.add(container);
+		
+		resize();
+		
+		while(true) {
+			
+			frameWidth = clientFrame.getWidth();
+			frameHeight = clientFrame.getHeight();
+			
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			newFrameWidth = clientFrame.getWidth();
+			newFrameWidth = clientFrame.getHeight();
+			
+			if(frameWidth != newFrameWidth || frameHeight != newFrameHeight) {
+				resize();
+			}
+			
+		}
+
+	}
+	public static void resize() {
+		
+		frameWidth = clientFrame.getWidth();
+		frameHeight = clientFrame.getHeight();
+		
+		searchBox.setBounds(frameWidth/4, frameHeight/2, frameWidth/2, frameWidth/16);
+		searchButton.setBounds(frameWidth*3/4, frameHeight/2, frameHeight/8, frameWidth/16);
 
 	}
 
