@@ -139,6 +139,9 @@ public class Client {
 		container.add(subtracterButtons[2]);
 		// Adding panel to frame
 		clientFrame.add(container);
+		repaint(clientFrame);
+		reformat(clientFrame);
+		clientFrame.revalidate();
 
 		// Tick...
 		while (true) {

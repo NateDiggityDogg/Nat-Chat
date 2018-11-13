@@ -23,6 +23,8 @@ public class Reader {
 	
 	static int newFrameWidth;
 	static int newFrameHeight;
+	
+	static String searchText;
 
 	public static void main(String[] args) {
 		
@@ -45,9 +47,9 @@ public class Reader {
 		container.add(searchButton);
 		
 		clientFrame.add(container);
+		clientFrame.revalidate();
 		
-		resize();
-		
+		//tick...
 		while(true) {
 			
 			frameWidth = clientFrame.getWidth();
@@ -61,6 +63,12 @@ public class Reader {
 			
 			newFrameWidth = clientFrame.getWidth();
 			newFrameWidth = clientFrame.getHeight();
+			
+			if(searchButton.getModel().isPressed()) {
+				System.out.println(searchBox.getText());
+				clientFrame.remove(container);
+				resize();
+			}
 			
 			if(frameWidth != newFrameWidth || frameHeight != newFrameHeight) {
 				resize();
@@ -76,6 +84,8 @@ public class Reader {
 		
 		searchBox.setBounds(frameWidth/4, frameHeight/2, frameWidth/2, frameWidth/16);
 		searchButton.setBounds(frameWidth*3/4, frameHeight/2, frameHeight/8, frameWidth/16);
+		
+		clientFrame.repaint();
 
 	}
 
