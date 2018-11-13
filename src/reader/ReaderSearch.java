@@ -20,9 +20,11 @@ public class ReaderSearch {
 				Scanner scan = new Scanner(files[i]);
 				Boolean bool = true;
 				
-				if(scan.nextLine() == searchText) {
+				if(scan.hasNextLine() && scan.nextLine() == searchText) {
 					selectedFiles[i] = true;
+					System.out.println("Found!!!");
 				}
+				System.out.println(searchText);
 				
 				while (bool == true) {
 					if (scan.hasNextLine()) {
