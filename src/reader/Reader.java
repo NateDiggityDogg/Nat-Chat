@@ -65,9 +65,11 @@ public class Reader {
 			newFrameWidth = clientFrame.getHeight();
 			
 			if(searchButton.getModel().isPressed()) {
-				System.out.println(searchBox.getText());
+				searchText = searchBox.getText();
 				clientFrame.remove(container);
 				resize();
+				clientFrame.dispose();
+				ReaderSearch.main();
 			}
 			
 			if(frameWidth != newFrameWidth || frameHeight != newFrameHeight) {
