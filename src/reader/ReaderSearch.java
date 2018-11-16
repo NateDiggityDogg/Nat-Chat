@@ -53,6 +53,8 @@ public class ReaderSearch {
 			System.out.println(selectedFiles[i]);
 		}
 		
+		ReaderReport.main();
+		
 	}
 
 }
