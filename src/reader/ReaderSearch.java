@@ -9,13 +9,15 @@ import java.util.Scanner;
 
 public class ReaderSearch {
 	static Boolean[] selectedFiles;
+	static String[][] data;
 	public static void main() {
 		String searchText = Reader.searchText.toLowerCase();
 		File fileFolder = new File("").getAbsoluteFile();
 		File[] files = fileFolder.listFiles();
 		selectedFiles = new Boolean[files.length];
-		System.out.println(files.length);
-		System.out.println(searchText);
+		data = new String[files.length][12];
+//		System.out.println(files.length);
+//		System.out.println(searchText);
 		for (int i = 0; i < files.length; i++) {
 			try {
 				Scanner scan = new Scanner(files[i]);
@@ -23,36 +25,33 @@ public class ReaderSearch {
 				
 				if(scan.hasNextLine()) {
 					String comparison = scan.nextLine();
-					if(comparison.contains(searchText)) {
-						System.out.println("Found!!!");
+					if(comparison.equals(searchText)) {
+//						System.out.println("Found!!!");
 						selectedFiles[i] = true;
+						data[i][0] = comparison;
+						
+						for(int k=0;k<11;k++) {
+							String line = scan.nextLine();
+//							System.out.println(line);
+							data[i][k+1] = line;
+						}
+						
 					}else {
 						System.out.println("Not found!!!" + comparison);
 						selectedFiles[i] = false;
 					}
+				}else {
+					selectedFiles[i] = false;
 				}
-//				System.out.println(searchText);
 				
-				while (bool == true) {
-					if (scan.hasNextLine()) {
-						System.out.println(scan.nextLine());
-					} else {
-						System.out.println("");
-						bool = false;
-					}
-				}
 				scan.close();
 				
-				System.out.println(selectedFiles.length);
+//				System.out.println(selectedFiles.length);
 				
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
 		}
-		for(int i=0;i<selectedFiles.length;i++) {
-			System.out.println(selectedFiles[i]);
-		}
-		
 		ReaderReport.main();
 		
 	}
