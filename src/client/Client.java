@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.imageio.ImageIO;
 import javax.swing.GroupLayout;
@@ -22,6 +24,7 @@ import javax.swing.JLayer;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.JFileChooser;
 
 public class Client {
 
@@ -41,8 +44,12 @@ public class Client {
 	// Counter buttons
 	static JButton saveButton;
 	static JButton resetButton;
+	static JButton loadButton;
 	static JButton adderButtons[];
 	static JButton subtracterButtons[];
+	
+	//The file chooser
+	static JFileChooser fileChooser;
 
 	// Counter numbers
 
@@ -50,7 +57,7 @@ public class Client {
 
 	static drawingComponent paint;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws FileNotFoundException {
 
 		// Defining JFrame properties
 		JFrame clientFrame = new JFrame();
@@ -100,6 +107,7 @@ public class Client {
 
 		saveButton = new JButton("Save");
 		resetButton = new JButton("Reset");
+		loadButton = new JButton("Load file");
 
 		adderButtons = new JButton[3];
 		subtracterButtons = new JButton[3];
@@ -111,6 +119,8 @@ public class Client {
 		subtracterButtons[0] = new JButton("-");
 		subtracterButtons[1] = new JButton("-");
 		subtracterButtons[2] = new JButton("-");
+		
+		fileChooser = new JFileChooser();
 
 		// Adding components to JPanel
 		container.add(paint);
@@ -131,12 +141,14 @@ public class Client {
 		container.add(textboxes[2]);
 		container.add(saveButton);
 		container.add(resetButton);
+		container.add(loadButton);
 		container.add(adderButtons[0]);
 		container.add(adderButtons[1]);
 		container.add(adderButtons[2]);
 		container.add(subtracterButtons[0]);
 		container.add(subtracterButtons[1]);
 		container.add(subtracterButtons[2]);
+		
 		// Adding panel to frame
 		clientFrame.add(container);
 		repaint(clientFrame);
@@ -148,7 +160,7 @@ public class Client {
 			frameWidth = clientFrame.getWidth();
 			frameHeight = clientFrame.getHeight();
 
-			// On button press
+			// On save button press
 			if (saveButton.getModel().isPressed()) {
 
 				Boolean[] booleans = new Boolean[6];
@@ -188,9 +200,42 @@ public class Client {
 				numbers[1] = 0;
 				numbers[2] = 0;
 
+				saveButton.setVisible(true);
 				repaint(clientFrame);
+			}
+			
+			//On load button press
+			
+			if(loadButton.getModel().isPressed()) {
+				fileChooser.setCurrentDirectory(new File("").getAbsoluteFile());
+				fileChooser.showOpenDialog(container);
+				File selectedFile;
+
+				selectedFile = fileChooser.getSelectedFile();
+				
+				Scanner fileScan = new Scanner(selectedFile);
+				
+				textboxes[0].setText(fileScan.nextLine());
+				textboxes[1].setText(fileScan.nextLine());
+				textboxes[2].setText(fileScan.nextLine());
+				
+				checkboxes[0].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+				checkboxes[1].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+				checkboxes[2].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+				checkboxes[3].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+				checkboxes[4].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+				checkboxes[5].setSelected(Boolean.parseBoolean(fileScan.nextLine()));
+
+				numbers[0] = Integer.parseInt(fileScan.nextLine());
+				numbers[1] = Integer.parseInt(fileScan.nextLine());
+				numbers[2] = Integer.parseInt(fileScan.nextLine());
+				
+				fileScan.close();
 
 				saveButton.setVisible(true);
+				repaint(clientFrame);				
+				
+				cooldown(loadButton, clientFrame);
 			}
 
 			// On counter button press
@@ -257,6 +302,7 @@ public class Client {
 
 		saveButton.setBounds(frameWidth / 2, frameHeight * 17 / 32, frameWidth / 12, frameHeight / 16);
 		resetButton.setBounds(frameWidth / 2, frameHeight * 13 / 32, frameWidth / 12, frameHeight / 16);
+		loadButton.setBounds(frameWidth / 2, frameHeight * 9 / 32, frameWidth / 12, frameHeight / 16);
 
 	}
 
