@@ -31,18 +31,15 @@ public class drawingComponent extends JComponent {
 
 		System.out.println("draw!");
 
-		Image image = loadImage("Resources/IMG_1749.JPG");
+//		Image image = loadImage("Resources/IMG_1749.JPG");
 
-		font = new Font("sdf", frameWidth / 16, frameWidth / 16);
+		font = new Font("sdf", frameWidth/16, frameHeight/16);
 
 		g2d.setPaint(gradPaint);
 		g2d.setFont(font);
-
-//		g2d.drawString(Integer.toString(Client.numbers[0]), frameWidth / 2, frameHeight / 4);
-//		g2d.drawString(Integer.toString(Client.numbers[1]), frameWidth * 5 / 8, frameHeight / 4);
-//		g2d.drawString(Integer.toString(Client.numbers[2]), frameWidth * 6 / 8, frameHeight / 4);
-
-//	g2d.drawImage(image, 0, 0, frameWidth, frameHeight, null);
+		g2d.drawString(Double.toString(Math.round(100 * ReaderReport.average(ReaderReport.data, ReaderReport.selectedFiles, 9))/100.00), frameWidth/4, frameHeight/12);
+		g2d.drawString(Double.toString(Math.round(100 * ReaderReport.average(ReaderReport.data, ReaderReport.selectedFiles, 10))/100.00), frameWidth/2, frameHeight/12);
+		g2d.drawString(Double.toString(Math.round(100 * ReaderReport.average(ReaderReport.data, ReaderReport.selectedFiles, 11))/100.00), frameWidth*3/4, frameHeight/12);
 
 	}
 

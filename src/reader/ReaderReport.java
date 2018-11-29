@@ -17,14 +17,13 @@ public class ReaderReport {
 
 		int screenWidth = (int) Toolkit.getDefaultToolkit().getScreenSize().getWidth();
 		int screenHeight = (int) Toolkit.getDefaultToolkit().getScreenSize().getHeight();
-
-		JFrame readerFrame = new JFrame();
-		readerFrame.setSize(screenWidth/2,screenHeight/2);
-		readerFrame.setLocation(screenWidth/4, screenHeight/4);
-		readerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		readerFrame.setVisible(true);
 		
-		System.out.println(average(data, selectedFiles, 9));
+		JFrame readerFrame = new JFrame(Reader.searchText);
+		readerFrame.setSize(screenWidth/2, screenHeight/2);
+		readerFrame.setLocation(screenWidth/4,screenHeight/4);
+		readerFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		readerFrame.add(new drawingComponent());
+		readerFrame.setVisible(true);
 
 	}
 	
